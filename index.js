@@ -1,8 +1,10 @@
-const express = require('express');
+const express = require("express");
 const app = express();
+const port = 8080;
+const videosRouter = require("./routes/videos");
 
-app.get("/", (req, res) => {
-    res.send("Welcome to /");
-})
+app.use(express.json());
 
-app.listen(8080);
+app.use("/videos", videosRouter);
+
+app.listen(port, () => console.log("API Server is running..."));
