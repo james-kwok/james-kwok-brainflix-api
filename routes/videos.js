@@ -2,14 +2,17 @@ const express = require("express");
 const router = express.Router();
 const { getVideos } = require("../models/videos");
 
-// getting videos
+// getting videos for videoList
 
 router.get("/", (req, res) => {
-  const videoList = getVideos();
+  const videos = getVideos();
+  const videoList = videos.map(({id, title, channel, image}) => {
+    return [{id, title, channel, image}]
+  })
   res.json(videoList);
 });
 
-// getting a video
+// getting a video for featuredVideo
 
 router.get("/:id", (req, res) => {
   const id = req.params.id;
