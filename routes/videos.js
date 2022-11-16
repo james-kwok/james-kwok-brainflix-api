@@ -7,7 +7,7 @@ const { getVideos } = require("../models/videos");
 router.get("/", (req, res) => {
   const videos = getVideos();
   const videoList = videos.map(({id, title, channel, image}) => {
-    return [{id, title, channel, image}]
+    return {id, title, channel, image}
   })
   res.json(videoList);
 });
